@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Control.gd" type="Script" id=1]
+[ext_resource path="res://DateTime.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.34902, 0.117647, 0.811765, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0.972549, 0.972549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+border_color = Color( 0.960784, 0.960784, 0.960784, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -13,36 +30,96 @@ margin_top = -3.0
 margin_right = 1019.95
 margin_bottom = 596.0
 
-[node name="Button" type="Button" parent="Panel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -43.0
-margin_top = -99.0
-margin_right = 43.0
-margin_bottom = -62.0
-text = "Add"
+[node name="RightPanel" type="Panel" parent="Panel"]
+margin_left = 300.0
+margin_top = 2.0
+margin_right = 1021.0
+margin_bottom = 593.0
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Header" type="Panel" parent="Panel/RightPanel"]
+margin_left = 44.0
+margin_top = -1.0
+margin_right = 724.0
+margin_bottom = 120.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Tittle" type="Label" parent="Panel/RightPanel/Header"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -119.0
-margin_right = 119.0
-margin_bottom = 46.0
+margin_left = -425.122
+margin_top = 38.6075
+margin_right = -145.122
+margin_bottom = 85.6075
 text = "TO DO LIST"
 align = 1
 valign = 1
 
-[node name="ItemList" type="ItemList" parent="Panel"]
+[node name="DateTime" type="Label" parent="Panel/RightPanel/Header"]
+margin_left = 19.2702
+margin_top = 90.8019
+margin_right = 62.2702
+margin_bottom = 104.802
+script = ExtResource( 2 )
+
+[node name="List" type="Panel" parent="Panel/RightPanel"]
+margin_left = 43.0
+margin_top = 121.0
+margin_right = 721.0
+margin_bottom = 595.0
+
+[node name="ListAction" type="ItemList" parent="Panel/RightPanel/List"]
+margin_right = 678.0
+margin_bottom = 475.0
+custom_styles/bg = SubResource( 5 )
+custom_colors/guide_color = Color( 0, 0, 0, 1 )
+
+[node name="LeftPanel" type="Panel" parent="Panel"]
+margin_top = 1.0
+margin_right = 343.0
+margin_bottom = 602.0
+
+[node name="Head" type="Panel" parent="Panel/LeftPanel"]
+margin_right = 342.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Credit" type="Label" parent="Panel/LeftPanel/Head"]
+margin_left = 105.973
+margin_top = 15.8006
+margin_right = 230.973
+margin_bottom = 39.8006
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Hieu Pro"
+align = 1
+
+[node name="Body" type="Panel" parent="Panel/LeftPanel"]
+margin_left = 1.0
+margin_top = 41.0
+margin_right = 342.0
+margin_bottom = 599.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="Button" type="Button" parent="Panel/LeftPanel/Body"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -55.0734
+margin_top = -66.5168
+margin_right = 30.9266
+margin_bottom = -29.5168
+text = "Add"
+
+[node name="ListCollection" type="ItemList" parent="Panel/LeftPanel/Body"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -390.0
-margin_top = -221.5
-margin_right = 390.0
-margin_bottom = 147.5
+margin_left = -171.5
+margin_top = -280.0
+margin_right = 168.5
+margin_bottom = 197.0
+custom_styles/bg = SubResource( 4 )
 items = [ "Hoc bai", null, false, "Choi game", null, false ]
 
 [node name="Popup" type="Popup" parent="."]
@@ -67,5 +144,5 @@ margin_left = 58.9473
 margin_top = 51.5789
 margin_right = 702.947
 margin_bottom = 324.579
-[connection signal="pressed" from="Panel/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Panel/LeftPanel/Body/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Popup/Panel/Button" to="." method="_on_Button_2_pressed"]
