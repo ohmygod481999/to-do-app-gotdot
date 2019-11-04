@@ -1,22 +1,23 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Control.gd" type="Script" id=1]
 [ext_resource path="res://DateTime.gd" type="Script" id=2]
+[ext_resource path="res://ListCollection.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.34902, 0.117647, 0.811765, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 0.972549, 0.972549, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 1, 1, 1, 1 )
 border_color = Color( 0.960784, 0.960784, 0.960784, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 1, 1, 1, 1 )
 
 [node name="Control" type="Control"]
@@ -70,7 +71,7 @@ margin_bottom = 595.0
 [node name="ListAction" type="ItemList" parent="Panel/RightPanel/List"]
 margin_right = 678.0
 margin_bottom = 475.0
-custom_styles/bg = SubResource( 5 )
+custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0, 0, 0, 1 )
 
 [node name="LeftPanel" type="Panel" parent="Panel"]
@@ -81,7 +82,7 @@ margin_bottom = 602.0
 [node name="Head" type="Panel" parent="Panel/LeftPanel"]
 margin_right = 342.0
 margin_bottom = 40.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="Credit" type="Label" parent="Panel/LeftPanel/Head"]
 margin_left = 105.973
@@ -97,7 +98,7 @@ margin_left = 1.0
 margin_top = 41.0
 margin_right = 342.0
 margin_bottom = 599.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 4 )
 
 [node name="Button" type="Button" parent="Panel/LeftPanel/Body"]
 anchor_left = 0.5
@@ -119,8 +120,9 @@ margin_left = -171.5
 margin_top = -280.0
 margin_right = 168.5
 margin_bottom = 197.0
-custom_styles/bg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
 items = [ "Hoc bai", null, false, "Choi game", null, false ]
+script = ExtResource( 3 )
 
 [node name="Popup" type="Popup" parent="."]
 margin_left = 121.0
@@ -145,4 +147,5 @@ margin_top = 51.5789
 margin_right = 702.947
 margin_bottom = 324.579
 [connection signal="pressed" from="Panel/LeftPanel/Body/Button" to="." method="_on_Button_pressed"]
+[connection signal="item_selected" from="Panel/LeftPanel/Body/ListCollection" to="Panel/LeftPanel/Body/ListCollection" method="_on_ListCollection_item_selected"]
 [connection signal="pressed" from="Popup/Panel/Button" to="." method="_on_Button_2_pressed"]

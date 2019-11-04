@@ -1,5 +1,4 @@
 extends Control
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -27,7 +26,7 @@ var data = [
 	}
 ]
 
-var listDone = [
+var done = [
 	"done1",
 	"done2"
 ]
@@ -37,7 +36,8 @@ func _ready():
 	var collections = $Panel/LeftPanel/Body/ListCollection
 	for data_item in data:
 		collections.add_item(data_item["name"])
-	reset_actions(1)
+	$Panel/LeftPanel/Body/ListCollection.init_data(data)
+	#reset_actions(1)
 
 func delete_children(node):
 	for n in node.get_children():
@@ -53,6 +53,7 @@ func reset_actions(id):
 				var myItem = preload("res://ListItem.tscn").instance()
 				myItem.init(item)
 				action_panel.add_item(myItem)
+				
 			break
 
 func _on_Button_pressed():
@@ -61,3 +62,4 @@ func _on_Button_pressed():
 func _on_Button_2_pressed():
 	$Panel/LeftPanel/Body/ListCollection.add_item($Popup/Panel/TextEdit.text)
 	$Popup.hide()
+
