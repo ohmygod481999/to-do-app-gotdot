@@ -6,8 +6,17 @@ export(NodePath) var button
 export (PackedScene) var ListItem
 
 const completed = "Completed"
+const id_completed = 21012604
 var username = "concac"
 var password = "concac"
+
+var timer = 0
+
+func _physics_process(delta):
+	timer += 1
+	if timer == 600:
+		timer = 0
+		$PutData.put_tasks(data, username, password, id_completed)
 
 var data = [
 	{
@@ -33,6 +42,16 @@ var data = [
 var done = [
 ]
 
+func get_done_list(name, secret):
+	var query = JSON.print({
+		"name": name,
+		"secret": secret
+	})
+    # Add 'Content-Type' header:
+	var url = "https://to-do-app-godot.herokuapp.com/to-do-lists/done-items"
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest.request(url, headers, true, HTTPClient.METHOD_POST, query)
+
 func get_data(name, secret):
 	var query = JSON.print({
 		"name": name,
@@ -42,11 +61,9 @@ func get_data(name, secret):
 	var url = "https://to-do-app-godot.herokuapp.com/to-do-lists/"
 	var headers = ["Content-Type: application/json"]
 	$HTTPRequest.request(url, headers, true, HTTPClient.METHOD_POST, query)
-	print("sent")
 
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	var json = JSON.parse(body.get_string_from_utf8())
-	print(json.result)
 	if json.result["data"]:
 		username = json.result["data"]["name"]
 		password = json.result["data"]["secret"]
@@ -54,6 +71,7 @@ func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 		var got_data = json.result["data"]["data"]
 		#print(got_data)
 		data = got_data
+		reset_done()
 		init_collections()
 	else: 
 		$"Wrong_account_popup()".popup()
@@ -65,23 +83,25 @@ func add_action(idx, action):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_data("facker", "iovedanong")
+	get_data("long", "huongdangyeu")
+	get_done_list("long", "huongdangyeu")
 	reset_done()
 	init_collections()
 	
 func delete_task(list_index, index):
 	done.append(data[list_index]["data"][index])
+	$PutData.put_done(username, password, data[list_index]["data"][index])
 	reset_done()
-	print(done)
 	data[list_index]["data"].remove(index)
 	$Panel/LeftPanel/Body/ListCollection.reset_actions(list_index)
 	
 func init_collections():
 	var collections = $Panel/LeftPanel/Body/ListCollection
 	collections.clear()
+	#print(data)
 	for data_item in data:
 		collections.add_item(data_item["name"])
-	collections.add_item(completed)
+		#print(data_item["name"])
 	$Panel/LeftPanel/Body/ListCollection.init_data(data)
 
 func delete_children(node):
@@ -123,7 +143,7 @@ func reset_done():
 		cnt += 1
 	data.append({
 		"name": completed,
-		"id": 1000,
+		"id": id_completed,
 		"data": done
 	})
 
@@ -142,3 +162,10 @@ func _on_Login_Button_pressed():
 
 func _on_Switch_Button_pressed():
 	$Login_popup.show()
+
+
+func _on_GetDoneList_request_completed(result, response_code, headers, body):
+	var json = JSON.parse(body.get_string_from_utf8())
+	if json.result["data"]:
+		done = json.result["data"]
+	pass # Replace with function body.
