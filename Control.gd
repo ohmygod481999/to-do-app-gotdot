@@ -5,6 +5,10 @@ extends Control
 export(NodePath) var button
 export (PackedScene) var ListItem
 
+const completed = "Completed"
+var username = "concac"
+var password = "concac"
+
 var data = [
 	{
 		"id": 0,
@@ -27,18 +31,16 @@ var data = [
 ]
 
 var done = [
-	"done1",
-	"done2"
 ]
 
 onready var icon = preload("res://CollectionIcon.tres")
 onready var items_width = 50
 onready var items_height = 50
 
-func get_data():
+func get_data(name, secret):
 	var query = JSON.print({
-		"name": "long",
-		"secret": "huongdangyeu"
+		"name": name,
+		"secret": secret
 	})
     # Add 'Content-Type' header:
 	var url = "https://to-do-app-godot.herokuapp.com/to-do-lists/"
@@ -48,21 +50,35 @@ func get_data():
 
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	var json = JSON.parse(body.get_string_from_utf8())
-	var got_data = json.result["data"]["data"]
-	#print(got_data)
-	data = got_data
-	init_collections()
+	print(json.result)
+	if json.result["data"]:
+		username = json.result["data"]["name"]
+		password = json.result["data"]["secret"]
+		$Panel/LeftPanel/Head/user/username.init(username)
+		var got_data = json.result["data"]["data"]
+		#print(got_data)
+		data = got_data
+		init_collections()
+	else: 
+		$"Wrong_account_popup()".popup()
 
 func add_action(idx, action):
-	for data_item in data:
-		if data_item["id"] == idx:
-			data_item["data"].append(action)
+	
+	data[idx]["data"].append(action)
+	$Panel/LeftPanel/Body/ListCollection.init_data(data)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_data()
+	get_data("facker", "iovedanong")
+	reset_done()
 	init_collections()
-	#reset_actions(1)
+	
+func delete_task(list_index, index):
+	done.append(data[list_index]["data"][index])
+	reset_done()
+	print(done)
+	data[list_index]["data"].remove(index)
+	$Panel/LeftPanel/Body/ListCollection.reset_actions(list_index)
 	
 func init_collections():
 	var collections = $Panel/LeftPanel/Body/ListCollection
@@ -98,14 +114,36 @@ func _on_OK_pressed():
 		var action = $List_modifier_popup/List_modifier/Panel/Action.text
 		add_action(listId, action)
 		$List_modifier_popup.hide()
-		#reset_actions(listId)
+		$Panel/LeftPanel/Body/ListCollection.reset_actions(listId)
 	else:
 		pass
 		
 		
-
+func reset_done():
+	var cnt = 0
+	for _data in data:
+		if _data["name"] == completed:
+			data.remove(cnt)
+			break
+		cnt += 1
+	data.append({
+		"name": completed,
+		"id": 1000,
+		"data": done
+	})
 
 func _on_Modify_button_pressed():
 	var listId = $Panel/LeftPanel/Body/ListCollection.selected
 	if (listId != -1):
 		$List_modifier_popup.popup()
+		
+		
+func _on_Login_Button_pressed(): 
+	var user = $Login_popup/Login/usernameet.text
+	var passw= $Login_popup/Login/passwordet.text
+	get_data(user, passw)
+	$Login_popup.hide()
+
+
+func _on_Switch_Button_pressed():
+	$Login_popup.show()

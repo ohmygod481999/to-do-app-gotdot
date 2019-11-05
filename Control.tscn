@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Control.gd" type="Script" id=1]
 [ext_resource path="res://source/background.jpg" type="Texture" id=2]
@@ -7,54 +7,55 @@
 [ext_resource path="res://DateTime.gd" type="Script" id=5]
 [ext_resource path="res://source/new.PNG" type="Texture" id=6]
 [ext_resource path="res://source/ava.PNG" type="Texture" id=7]
-[ext_resource path="res://ListCollection.gd" type="Script" id=8]
-[ext_resource path="res://List_modifier.tscn" type="PackedScene" id=9]
-
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 1, 1, 1, 1 )
-
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 1, 1, 1, 1 )
+[ext_resource path="res://username.gd" type="Script" id=8]
+[ext_resource path="res://ListCollection.gd" type="Script" id=9]
+[ext_resource path="res://List_modifier.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.290196, 0.384314, 0.811765, 1 )
+bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.290196, 0.384314, 0.811765, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 4 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-
-[sub_resource type="StyleBoxFlat" id=15]
-bg_color = Color( 1, 1, 1, 1 )
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 1, 0.972549, 0.972549, 1 )
-
-[sub_resource type="DynamicFont" id=8]
-font_data = ExtResource( 3 )
-
-[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 1, 0.972549, 0.972549, 1 )
+
+[sub_resource type="DynamicFont" id=11]
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=13]
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 1, 1, 1, 1 )
 border_color = Color( 0.960784, 0.960784, 0.960784, 1 )
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 1, 1, 1, 1 )
 
 [node name="Control" type="Control"]
@@ -72,31 +73,31 @@ margin_left = 50.0
 margin_top = 25.0
 margin_right = 974.0
 margin_bottom = 575.0
-custom_styles/panel = SubResource( 13 )
+custom_styles/panel = SubResource( 1 )
 
 [node name="RightPanel" type="Panel" parent="Panel"]
 margin_left = 308.0
 margin_right = 924.0
 margin_bottom = 550.0
-custom_styles/panel = SubResource( 14 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="Header" type="Panel" parent="Panel/RightPanel"]
 margin_top = -0.949997
 margin_right = 616.0
 margin_bottom = 149.05
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="Status" type="Panel" parent="Panel/RightPanel/Header"]
 margin_top = 50.0
 margin_right = 308.0
 margin_bottom = 150.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 4 )
 
 [node name="Tittle" type="Label" parent="Panel/RightPanel/Header/Status"]
 margin_left = 20.0
 margin_right = 308.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "TO DO LIST"
 valign = 1
 uppercase = true
@@ -106,7 +107,7 @@ margin_left = 20.0
 margin_top = 50.0
 margin_right = 308.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Tuesday, January 2019"
 
 [node name="DateTime" type="Label" parent="Panel/RightPanel/Header"]
@@ -121,7 +122,7 @@ margin_left = 308.0
 margin_top = 100.0
 margin_right = 616.0
 margin_bottom = 150.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 7 )
 
 [node name="new" type="Sprite" parent="Panel/RightPanel/Header/Tool"]
 position = Vector2( 154, 25 )
@@ -139,13 +140,13 @@ text = "Modify"
 margin_top = 150.0
 margin_right = 616.0
 margin_bottom = 550.0
-custom_styles/panel = SubResource( 15 )
+custom_styles/panel = SubResource( 8 )
 
 [node name="ListAction" type="ItemList" parent="Panel/RightPanel/List"]
 margin_left = 1.10803
 margin_right = 617.108
 margin_bottom = 400.0
-custom_styles/bg = SubResource( 6 )
+custom_styles/bg = SubResource( 9 )
 custom_colors/guide_color = Color( 0, 0, 0, 1 )
 
 [node name="LeftPanel" type="Panel" parent="Panel"]
@@ -155,13 +156,13 @@ margin_bottom = 550.0
 [node name="Head" type="Panel" parent="Panel/LeftPanel"]
 margin_right = 308.0
 margin_bottom = 80.0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 10 )
 
 [node name="Label" type="Label" parent="Panel/LeftPanel/Head"]
 margin_left = 15.0
 margin_right = 308.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.521569, 0.517647, 0.517647, 1 )
 text = "My To do App"
 valign = 1
@@ -170,7 +171,7 @@ valign = 1
 margin_top = 40.0
 margin_right = 308.0
 margin_bottom = 80.0
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 12 )
 
 [node name="ava" type="Sprite" parent="Panel/LeftPanel/Head/user"]
 position = Vector2( 20, 20 )
@@ -181,16 +182,17 @@ texture = ExtResource( 7 )
 margin_left = 50.0
 margin_right = 308.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Thien Anh"
 valign = 1
+script = ExtResource( 8 )
 
 [node name="Body" type="Panel" parent="Panel/LeftPanel"]
 margin_top = 80.0
 margin_right = 308.0
 margin_bottom = 550.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 14 )
 
 [node name="Button" type="Button" parent="Panel/LeftPanel/Body"]
 anchor_left = 0.5
@@ -212,9 +214,9 @@ margin_left = -144.0
 margin_top = -235.0
 margin_right = 144.0
 margin_bottom = 165.0
-custom_styles/bg = SubResource( 12 )
+custom_styles/bg = SubResource( 15 )
 items = [ "Hoc bai", null, false, "Choi game", null, false ]
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 
 [node name="Popup" type="Popup" parent="."]
 margin_left = 121.0
@@ -245,13 +247,15 @@ margin_top = 181.0
 margin_right = 893.0
 margin_bottom = 381.0
 
-[node name="List_modifier" parent="List_modifier_popup" instance=ExtResource( 9 )]
+[node name="List_modifier" parent="List_modifier_popup" instance=ExtResource( 10 )]
 margin_left = -0.0151672
 margin_top = 1.78276
 margin_right = 631.985
 margin_bottom = 197.783
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="PutData" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="Panel/RightPanel/Header/Tool/Modify_button" to="." method="_on_Modify_button_pressed"]
 [connection signal="pressed" from="Panel/LeftPanel/Body/Button" to="." method="_on_Button_pressed"]
 [connection signal="item_selected" from="Panel/LeftPanel/Body/ListCollection" to="Panel/LeftPanel/Body/ListCollection" method="_on_ListCollection_item_selected"]
