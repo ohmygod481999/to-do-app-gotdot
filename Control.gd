@@ -93,7 +93,6 @@ func _on_OK_pressed():
 		var listId = $Panel/LeftPanel/Body/ListCollection.selected
 		var action = $List_modifier_popup/List_modifier/Panel/Action.text
 		add_action(listId, action)
-		$Panel/RightPanel/Header/Tool/Modify_button.text = data[0]["data"][2]
 		$List_modifier_popup.hide()
 		#reset_actions(listId)
 	else:
