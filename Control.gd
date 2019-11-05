@@ -45,10 +45,11 @@ func get_data(username, password):
 
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	var json = JSON.parse(body.get_string_from_utf8())
-	var got_data = json.result["data"]["data"]
-	#print(got_data)
-	data = got_data
-	init_collections()
+	if json.result["data"]:
+		var got_data = json.result["data"]["data"]
+		#print(got_data)
+		data = got_data
+		init_collections()
 
 func add_action(idx, action):
 	for data_item in data:
@@ -57,7 +58,7 @@ func add_action(idx, action):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_data("long", "huongdangyeu")
+	get_data("facker", "iovedanong")
 	init_collections()
 	#reset_actions(1)
 	
