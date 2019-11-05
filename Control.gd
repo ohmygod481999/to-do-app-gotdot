@@ -31,6 +31,11 @@ var done = [
 	"done2"
 ]
 
+func add_action(idx, action):
+	for data_item in data:
+		if data_item["id"] == idx:
+			data_item["data"].append(action)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var collections = $Panel/LeftPanel/Body/ListCollection
@@ -63,3 +68,28 @@ func _on_Button_2_pressed():
 	$Panel/LeftPanel/Body/ListCollection.add_item($Popup/Panel/TextEdit.text)
 	$Popup.hide()
 
+
+
+func _on_Cancel_pressed():
+	$List_modifier_popup.hide()
+
+
+func _on_OK_pressed():
+	var id = $List_modifier_popup/List_modifier/OptionButton.selected
+	if (id == 0):
+		var listId = $Panel/LeftPanel/Body/ListCollection.selected
+		var action = $List_modifier_popup/List_modifier/Panel/Action.text
+		add_action(listId, action)
+		$Panel/RightPanel/Header/Tool/Modify_button.text = data[0]["data"][2]
+		$List_modifier_popup.hide()
+		#reset_actions(listId)
+	else:
+		pass
+		
+		
+
+
+func _on_Modify_button_pressed():
+	var listId = $Panel/LeftPanel/Body/ListCollection.selected
+	if (listId != -1):
+		$List_modifier_popup.popup()

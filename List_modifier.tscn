@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://List_modifier.gd" type="Script" id=1]
+
+[node name="List_modifier" type="Panel"]
+margin_left = 3.05176e-005
+margin_top = 0.175751
+margin_right = 632.0
+margin_bottom = 196.176
+script = ExtResource( 1 )
+
+[node name="OptionButton" type="OptionButton" parent="."]
+margin_left = 325.515
+margin_top = 2.10635
+margin_right = 631.515
+margin_bottom = 40.1064
+
+[node name="Label" type="Label" parent="."]
+margin_left = 6.0
+margin_right = 329.0
+margin_bottom = 39.0
+text = "THAO TAC CAN THUC HIEN:"
+valign = 1
+uppercase = true
+
+[node name="Button_ok" type="Button" parent="."]
+margin_left = 60.0
+margin_top = 139.0
+margin_right = 252.0
+margin_bottom = 180.0
+text = "OK"
+
+[node name="Button_cancel" type="Button" parent="."]
+margin_left = 393.579
+margin_top = 139.105
+margin_right = 584.579
+margin_bottom = 180.105
+text = "CANCEL"
+
+[node name="Panel" type="Panel" parent="."]
+margin_top = 1.0
+margin_bottom = 1.0
+
+[node name="Action" type="TextEdit" parent="Panel"]
+margin_left = 321.0
+margin_top = 67.0
+margin_right = 631.0
+margin_bottom = 106.0
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 5.0
+margin_top = 64.0
+margin_right = 326.0
+margin_bottom = 102.0
+text = "HANH DONG CAN XOA KHOI DANH SACH:"
+valign = 1
+[connection signal="item_selected" from="OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Button_ok" to="." method="_on_OK_pressed"]
+[connection signal="pressed" from="Button_cancel" to="." method="_on_Cancel_pressed"]

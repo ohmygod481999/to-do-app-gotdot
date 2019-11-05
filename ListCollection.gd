@@ -6,7 +6,7 @@ extends ItemList
 
 # Called when the node enters the scene tree for the first time.
 var ListPanel
-
+var selected = -1
 func _ready():
 	ListPanel = get_node("/root/Control/Panel/RightPanel/List")
 	pass # Replace with function body.
@@ -42,6 +42,7 @@ func delete_children(node):
 		n.queue_free()
 
 func _on_ListCollection_item_selected(index):
+	selected = index
 	var text = get_item_text(index)
 	var idx = 0
 	for item in data:
