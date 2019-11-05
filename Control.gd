@@ -31,6 +31,24 @@ var done = [
 	"done2"
 ]
 
+func get_data():
+	var query = JSON.print({
+		"name": "long",
+		"secret": "huongdangyeu"
+	})
+    # Add 'Content-Type' header:
+	var url = "https://to-do-app-godot.herokuapp.com/to-do-lists/"
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest.request(url, headers, true, HTTPClient.METHOD_POST, query)
+	print("sent")
+
+func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
+	var json = JSON.parse(body.get_string_from_utf8())
+	var got_data = json.result["data"]["data"]
+	#print(got_data)
+	data = got_data
+	init_collections()
+
 func add_action(idx, action):
 	for data_item in data:
 		if data_item["id"] == idx:
@@ -38,11 +56,16 @@ func add_action(idx, action):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_data()
+	init_collections()
+	#reset_actions(1)
+	
+func init_collections():
 	var collections = $Panel/LeftPanel/Body/ListCollection
+	collections.clear()
 	for data_item in data:
 		collections.add_item(data_item["name"])
 	$Panel/LeftPanel/Body/ListCollection.init_data(data)
-	#reset_actions(1)
 
 func delete_children(node):
 	for n in node.get_children():
