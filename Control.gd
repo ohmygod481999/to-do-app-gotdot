@@ -104,14 +104,14 @@ func init_collections():
 	collections.clear()
 	#print(data)
 	for data_item in data:
-<<<<<<< HEAD
+
 		collections.add_item(data_item["name"])
 		#print(data_item["name"])
-=======
+
 		var item = icon.duplicate()
 		item.set_region(Rect2(0, 0, items_width, items_height))
 		collections.add_item(data_item["name"], item)
->>>>>>> 4c29da14b84a3b84790ca7e49282b3824b316c07
+
 	$Panel/LeftPanel/Body/ListCollection.init_data(data)
 
 func delete_children(node):
