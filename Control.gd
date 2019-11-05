@@ -72,18 +72,6 @@ func delete_children(node):
 		node.remove_child(n)
 		n.queue_free()
 
-func reset_actions(id):
-	var action_panel = $Panel/RightPanel/List/ListAction
-	delete_children(action_panel)
-	for data_item in data:
-		if data_item["id"] == id:
-			for item in data_item["data"]:
-				var myItem = preload("res://ListItem.tscn").instance()
-				myItem.init(item)
-				action_panel.add_item(myItem)
-				
-			break
-
 func _on_Button_pressed():
 	$Popup.popup()
 
