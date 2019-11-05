@@ -40,6 +40,13 @@ func delete_children(node):
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
+		
+func reset_actions(idx):
+	var lists
+	lists = preload("res://List.tscn").instance()
+	lists.init(data[idx]["data"])
+	delete_children(ListPanel)
+	ListPanel.add_child(lists)
 
 func _on_ListCollection_item_selected(index):
 	selected = index
@@ -50,17 +57,18 @@ func _on_ListCollection_item_selected(index):
 			break
 		idx += 1
 	if idx < data.size():
-		var lists
+		reset_actions(idx)
+		#var lists
 		#if pre_load.get(str(idx)) == null:
 			#lists = preload("res://List.tscn").instance()
 			#lists.init(data[idx]["data"])
 			#pre_load[str(idx)] = lists
 		#else:
 			#lists = pre_load[str(idx)]
-		lists = preload("res://List.tscn").instance()
-		lists.init(data[idx]["data"])
-		delete_children(ListPanel)
-		ListPanel.add_child(lists)
+		#lists = preload("res://List.tscn").instance()
+		#lists.init(data[idx]["data"])
+		#delete_children(ListPanel)
+		#ListPanel.add_child(lists)
 		
 	pass # Replace with function body.
 # Called every frame. 'delta' is the elapsed time since the previous frame.
