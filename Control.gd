@@ -52,6 +52,10 @@ func get_done_list(name, secret):
 	var headers = ["Content-Type: application/json"]
 	$HTTPRequest.request(url, headers, true, HTTPClient.METHOD_POST, query)
 
+onready var icon = preload("res://CollectionIcon.tres")
+onready var items_width = 50
+onready var items_height = 50
+
 func get_data(name, secret):
 	var query = JSON.print({
 		"name": name,
@@ -100,8 +104,14 @@ func init_collections():
 	collections.clear()
 	#print(data)
 	for data_item in data:
+<<<<<<< HEAD
 		collections.add_item(data_item["name"])
 		#print(data_item["name"])
+=======
+		var item = icon.duplicate()
+		item.set_region(Rect2(0, 0, items_width, items_height))
+		collections.add_item(data_item["name"], item)
+>>>>>>> 4c29da14b84a3b84790ca7e49282b3824b316c07
 	$Panel/LeftPanel/Body/ListCollection.init_data(data)
 
 func delete_children(node):
@@ -113,7 +123,15 @@ func _on_Button_pressed():
 	$Popup.popup()
 
 func _on_Button_2_pressed():
-	$Panel/LeftPanel/Body/ListCollection.add_item($Popup/Panel/TextEdit.text)
+	var jobName = $Popup/Panel/TextEdit.text
+	$Panel/LeftPanel/Body/ListCollection.add_item(jobName)
+	var sz = data.size()
+	data.append({
+		"id" : sz,
+		"name" : jobName,
+		"data" : []
+		})
+	init_collections()
 	$Popup.hide()
 
 
