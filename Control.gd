@@ -5,6 +5,8 @@ extends Control
 export(NodePath) var button
 export (PackedScene) var ListItem
 
+const completed = "Completed"
+
 var data = [
 	{
 		"id": 0,
@@ -27,8 +29,6 @@ var data = [
 ]
 
 var done = [
-	"done1",
-	"done2"
 ]
 
 func get_data(username, password):
@@ -59,14 +59,22 @@ func add_action(idx, action):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_data("facker", "iovedanong")
+	reset_done()
 	init_collections()
-	#reset_actions(1)
+	
+func delete_task(list_index, index):
+	done.append(data[list_index]["data"][index])
+	reset_done()
+	print(done)
+	data[list_index]["data"].remove(index)
+	$Panel/LeftPanel/Body/ListCollection.reset_actions(list_index)
 	
 func init_collections():
 	var collections = $Panel/LeftPanel/Body/ListCollection
 	collections.clear()
 	for data_item in data:
 		collections.add_item(data_item["name"])
+	collections.add_item(completed)
 	$Panel/LeftPanel/Body/ListCollection.init_data(data)
 
 func delete_children(node):
@@ -99,7 +107,18 @@ func _on_OK_pressed():
 		pass
 		
 		
-
+func reset_done():
+	var cnt = 0
+	for _data in data:
+		if _data["name"] == completed:
+			data.remove(cnt)
+			break
+		cnt += 1
+	data.append({
+		"name": completed,
+		"id": 1000,
+		"data": done
+	})
 
 func _on_Modify_button_pressed():
 	var listId = $Panel/LeftPanel/Body/ListCollection.selected
