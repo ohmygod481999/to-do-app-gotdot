@@ -12,24 +12,6 @@ func _ready():
 	pass # Replace with function body.
 	
 var data = [
-	{
-		"id": 0,
-		"name": "List1",
-		"data": [
-			"data1",
-			"data2",
-			"data3"
-		]
-	},
-	{
-		"id": 1,
-		"name": "List2",
-		"data": [
-			"data4",
-			"data5",
-			"data6"
-		]
-	}
 ]
 var pre_load = {}
 

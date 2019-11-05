@@ -31,10 +31,11 @@ var done = [
 	"done2"
 ]
 
-func get_data():
+func get_data(username, password):
+	$Panel/LeftPanel/Head/user/username.init(username)
 	var query = JSON.print({
-		"name": "long",
-		"secret": "huongdangyeu"
+		"name": username,
+		"secret": password
 	})
     # Add 'Content-Type' header:
 	var url = "https://to-do-app-godot.herokuapp.com/to-do-lists/"
@@ -56,7 +57,7 @@ func add_action(idx, action):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_data()
+	get_data("long", "huongdangyeu")
 	init_collections()
 	#reset_actions(1)
 	
