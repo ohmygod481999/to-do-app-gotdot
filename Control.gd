@@ -31,6 +31,10 @@ var done = [
 	"done2"
 ]
 
+onready var icon = preload("res://CollectionIcon.tres")
+onready var items_width = 50
+onready var items_height = 50
+
 func get_data():
 	var query = JSON.print({
 		"name": "long",
@@ -64,7 +68,9 @@ func init_collections():
 	var collections = $Panel/LeftPanel/Body/ListCollection
 	collections.clear()
 	for data_item in data:
-		collections.add_item(data_item["name"])
+		var item = icon.duplicate()
+		item.set_region(Rect2(0, 0, items_width, items_height))
+		collections.add_item(data_item["name"], item)
 	$Panel/LeftPanel/Body/ListCollection.init_data(data)
 
 func delete_children(node):

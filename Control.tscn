@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Control.gd" type="Script" id=1]
 [ext_resource path="res://source/background.jpg" type="Texture" id=2]
@@ -9,6 +9,12 @@
 [ext_resource path="res://source/ava.PNG" type="Texture" id=7]
 [ext_resource path="res://ListCollection.gd" type="Script" id=8]
 [ext_resource path="res://List_modifier.tscn" type="PackedScene" id=9]
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.290196, 0.384314, 0.811765, 1 )
@@ -25,6 +31,9 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 1, 1, 1, 1 )
@@ -63,11 +72,13 @@ margin_left = 50.0
 margin_top = 25.0
 margin_right = 974.0
 margin_bottom = 575.0
+custom_styles/panel = SubResource( 13 )
 
 [node name="RightPanel" type="Panel" parent="Panel"]
 margin_left = 308.0
 margin_right = 924.0
 margin_bottom = 550.0
+custom_styles/panel = SubResource( 14 )
 
 [node name="Header" type="Panel" parent="Panel/RightPanel"]
 margin_top = -0.949997
@@ -128,6 +139,7 @@ text = "Modify"
 margin_top = 150.0
 margin_right = 616.0
 margin_bottom = 550.0
+custom_styles/panel = SubResource( 15 )
 
 [node name="ListAction" type="ItemList" parent="Panel/RightPanel/List"]
 margin_left = 1.10803
@@ -197,9 +209,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -144.0
-margin_top = -233.892
-margin_right = 154.0
-margin_bottom = 166.108
+margin_top = -235.0
+margin_right = 144.0
+margin_bottom = 165.0
 custom_styles/bg = SubResource( 12 )
 items = [ "Hoc bai", null, false, "Choi game", null, false ]
 script = ExtResource( 8 )
