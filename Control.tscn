@@ -242,6 +242,8 @@ margin_right = 631.985
 margin_bottom = 197.783
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="PutData" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="Panel/RightPanel/Header/Tool/Modify_button" to="." method="_on_Modify_button_pressed"]
 [connection signal="pressed" from="Panel/LeftPanel/Body/Button" to="." method="_on_Button_pressed"]
 [connection signal="item_selected" from="Panel/LeftPanel/Body/ListCollection" to="Panel/LeftPanel/Body/ListCollection" method="_on_ListCollection_item_selected"]

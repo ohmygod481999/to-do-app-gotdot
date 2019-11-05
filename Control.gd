@@ -99,6 +99,8 @@ func _on_OK_pressed():
 		pass
 		
 		
+
+
 func _on_Modify_button_pressed():
 	var listId = $Panel/LeftPanel/Body/ListCollection.selected
 	if (listId != -1):
