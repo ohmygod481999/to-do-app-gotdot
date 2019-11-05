@@ -98,7 +98,15 @@ func _on_Button_pressed():
 	$Popup.popup()
 
 func _on_Button_2_pressed():
-	$Panel/LeftPanel/Body/ListCollection.add_item($Popup/Panel/TextEdit.text)
+	var jobName = $Popup/Panel/TextEdit.text
+	$Panel/LeftPanel/Body/ListCollection.add_item(jobName)
+	var sz = data.size()
+	data.append({
+		"id" : sz,
+		"name" : jobName,
+		"data" : []
+		})
+	init_collections()
 	$Popup.hide()
 
 
