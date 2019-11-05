@@ -6,6 +6,8 @@ export(NodePath) var button
 export (PackedScene) var ListItem
 
 const completed = "Completed"
+var username = "concac"
+var password = "concac"
 
 var data = [
 	{
@@ -31,11 +33,10 @@ var data = [
 var done = [
 ]
 
-func get_data(username, password):
-	$Panel/LeftPanel/Head/user/username.init(username)
+func get_data(name, secret):
 	var query = JSON.print({
-		"name": username,
-		"secret": password
+		"name": name,
+		"secret": secret
 	})
     # Add 'Content-Type' header:
 	var url = "https://to-do-app-godot.herokuapp.com/to-do-lists/"
@@ -45,11 +46,17 @@ func get_data(username, password):
 
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	var json = JSON.parse(body.get_string_from_utf8())
+	print(json.result)
 	if json.result["data"]:
+		username = json.result["data"]["name"]
+		password = json.result["data"]["secret"]
+		$Panel/LeftPanel/Head/user/username.init(username)
 		var got_data = json.result["data"]["data"]
 		#print(got_data)
 		data = got_data
 		init_collections()
+	else: 
+		$"Wrong_account_popup()".popup()
 
 func add_action(idx, action):
 	
@@ -124,3 +131,14 @@ func _on_Modify_button_pressed():
 	var listId = $Panel/LeftPanel/Body/ListCollection.selected
 	if (listId != -1):
 		$List_modifier_popup.popup()
+		
+		
+func _on_Login_Button_pressed(): 
+	var user = $Login_popup/Login/usernameet.text
+	var passw= $Login_popup/Login/passwordet.text
+	get_data(user, passw)
+	$Login_popup.hide()
+
+
+func _on_Switch_Button_pressed():
+	$Login_popup.show()
