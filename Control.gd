@@ -52,9 +52,9 @@ func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 		init_collections()
 
 func add_action(idx, action):
-	for data_item in data:
-		if data_item["id"] == idx:
-			data_item["data"].append(action)
+	
+	data[idx]["data"].append(action)
+	$Panel/LeftPanel/Body/ListCollection.init_data(data)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -94,7 +94,7 @@ func _on_OK_pressed():
 		var action = $List_modifier_popup/List_modifier/Panel/Action.text
 		add_action(listId, action)
 		$List_modifier_popup.hide()
-		#reset_actions(listId)
+		$Panel/LeftPanel/Body/ListCollection.reset_actions(listId)
 	else:
 		pass
 		
