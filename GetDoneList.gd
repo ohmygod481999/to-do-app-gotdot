@@ -14,4 +14,6 @@ func _ready():
 
 
 func _on_GetDoneList_request_completed(result, response_code, headers, body):
+	var json = JSON.parse(body.get_string_from_utf8())
+	print("got")
 	pass # Replace with function body.

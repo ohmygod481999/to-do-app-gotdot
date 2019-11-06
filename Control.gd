@@ -50,7 +50,7 @@ func get_done_list(name, secret):
     # Add 'Content-Type' header:
 	var url = "https://to-do-app-godot.herokuapp.com/to-do-lists/done-items"
 	var headers = ["Content-Type: application/json"]
-	$HTTPRequest.request(url, headers, true, HTTPClient.METHOD_POST, query)
+	$GetDoneList.request(url, headers, true, HTTPClient.METHOD_POST, query)
 
 onready var icon = preload("res://CollectionIcon.tres")
 onready var items_width = 50
@@ -97,6 +97,7 @@ func delete_task(list_index, index):
 	$PutData.put_done(username, password, data[list_index]["data"][index])
 	reset_done()
 	data[list_index]["data"].remove(index)
+	$PutData.put_tasks(data, username, password, id_completed)
 	$Panel/LeftPanel/Body/ListCollection.reset_actions(list_index)
 	
 func init_collections():
@@ -183,7 +184,9 @@ func _on_Switch_Button_pressed():
 
 
 func _on_GetDoneList_request_completed(result, response_code, headers, body):
+	print("got")
 	var json = JSON.parse(body.get_string_from_utf8())
 	if json.result["data"]:
 		done = json.result["data"]
+	reset_done()
 	pass # Replace with function body.

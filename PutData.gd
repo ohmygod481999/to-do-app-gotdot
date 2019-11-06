@@ -45,4 +45,4 @@ func put_tasks(__data, username, secret, id_complete):
 
 func _on_PutData_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
-	print(json.result)
+	#print(json.result)
