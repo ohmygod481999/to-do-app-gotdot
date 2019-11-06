@@ -25,7 +25,7 @@ func put_tasks(__data, username, secret, id_complete):
 	for _data in data:
 		if _data["id"] == id_complete:
 			data.remove(cnt)
-			break
+		break
 		cnt += 1
 	var query = JSON.print({
 		"name": username,
@@ -41,3 +41,8 @@ func put_tasks(__data, username, secret, id_complete):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_PutData_request_completed(result, response_code, headers, body):
+	var json = JSON.parse(body.get_string_from_utf8())
+	print(json.result)

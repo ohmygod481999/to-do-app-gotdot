@@ -7,7 +7,7 @@ export (PackedScene) var ListItem
 
 const completed = "Completed"
 const id_completed = 21012604
-var username = "concac"
+var username = "phuong"
 var password = "concac"
 
 var timer = 0
@@ -87,8 +87,8 @@ func add_action(idx, action):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_data("long", "huongdangyeu")
-	get_done_list("long", "huongdangyeu")
+	get_data("phuong", "phuongduongvat")
+	get_done_list("phuong", "phuongduongvat")
 	reset_done()
 	init_collections()
 	
