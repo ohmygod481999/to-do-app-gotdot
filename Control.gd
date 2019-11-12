@@ -81,7 +81,6 @@ func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 		$"Wrong_account_popup()".popup()
 
 func add_action(idx, action):
-	
 	data[idx]["data"].append(action)
 	$Panel/LeftPanel/Body/ListCollection.init_data(data)
 
@@ -125,13 +124,14 @@ func _on_Button_pressed():
 
 func _on_Button_2_pressed():
 	var jobName = $Popup/Panel/TextEdit.text
-	$Panel/LeftPanel/Body/ListCollection.add_item(jobName)
-	var sz = data.size()
-	data.append({
-		"id" : sz,
-		"name" : jobName,
-		"data" : []
-		})
+	if jobName.length() > 0:
+		$Panel/LeftPanel/Body/ListCollection.add_item(jobName)
+		var sz = data.size()
+		data.append({
+			"id" : sz,
+			"name" : jobName,
+			"data" : []
+			})
 	init_collections()
 	$Popup.hide()
 
