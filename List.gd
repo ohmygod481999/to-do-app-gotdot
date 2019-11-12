@@ -1,4 +1,4 @@
-extends VScrollBar
+extends ScrollContainer
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -28,11 +28,14 @@ func init(data):
 		var item_node = preload("res://ListItem.tscn").instance()
 		item_node.init(item)
 		item_node.init_idx(counter, index)
-		add_child(item_node)
+		
 		#item_node.anchor.x = 0
 		#item_node.anchor.y = 0
 		item_node.rect_position.x = 0
 		item_node.rect_position.y = item_height * counter
+		var VBox = get_child(2)
+		#print(control)
+		VBox.add_child(item_node)
 		counter += 1
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
