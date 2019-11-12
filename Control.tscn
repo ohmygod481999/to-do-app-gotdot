@@ -62,7 +62,6 @@ scale = Vector2( 1.35, 1.2 )
 texture = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
-editor/display_folded = true
 margin_left = 50.0
 margin_top = 25.0
 margin_right = 974.0
@@ -100,7 +99,6 @@ margin_top = 50.0
 margin_right = 308.0
 margin_bottom = 100.0
 custom_fonts/font = SubResource( 4 )
-text = "Tuesday, January 2019"
 
 [node name="DateTime" type="Label" parent="Panel/RightPanel/Header"]
 margin_left = 19.2702

@@ -4,7 +4,7 @@ extends Label
 # var a = 2
 # var b = "text"
 var time = OS.get_datetime()
-var dayofweek = time["day"]
+var dayofweek = time["weekday"]
 
 var map_date = {
 	0: "Sunday",
@@ -21,6 +21,7 @@ func get_date_format():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	text = get_date_format()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
