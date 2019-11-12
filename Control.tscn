@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Control.gd" type="Script" id=1]
 [ext_resource path="res://source/background.jpg" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://List_modifier.tscn" type="PackedScene" id=10]
 [ext_resource path="res://PutData.gd" type="Script" id=11]
 [ext_resource path="res://GetDoneList.gd" type="Script" id=12]
+[ext_resource path="res://Login.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.290196, 0.384314, 0.811765, 1 )
@@ -177,6 +178,13 @@ text = "Thien Anh"
 valign = 1
 script = ExtResource( 8 )
 
+[node name="Login_button" type="Button" parent="Panel/LeftPanel/Head"]
+margin_left = 169.399
+margin_top = 47.7076
+margin_right = 302.399
+margin_bottom = 67.7076
+text = "CHANGE ACCOUNT"
+
 [node name="Body" type="Panel" parent="Panel/LeftPanel"]
 margin_top = 80.0
 margin_right = 308.0
@@ -232,6 +240,7 @@ margin_right = 702.947
 margin_bottom = 324.579
 
 [node name="List_modifier_popup" type="Popup" parent="."]
+editor/display_folded = true
 margin_left = 262.0
 margin_top = 181.0
 margin_right = 893.0
@@ -250,7 +259,38 @@ script = ExtResource( 11 )
 
 [node name="GetDoneList" type="HTTPRequest" parent="."]
 script = ExtResource( 12 )
+
+[node name="Login_popup" type="Popup" parent="."]
+margin_left = 279.0
+margin_top = 207.0
+margin_right = 914.0
+margin_bottom = 357.0
+
+[node name="Login" parent="Login_popup" instance=ExtResource( 13 )]
+margin_left = 1.02911
+margin_right = 635.029
+
+[node name="Wrong_account_popup" type="Popup" parent="."]
+visible = true
+margin_left = 389.0
+margin_top = 211.947
+margin_right = 429.0
+margin_bottom = 251.947
+
+[node name="Panel" type="Panel" parent="Wrong_account_popup"]
+margin_left = -59.4485
+margin_top = 3.87708
+margin_right = 319.552
+margin_bottom = 100.877
+
+[node name="Label" type="Label" parent="Wrong_account_popup/Panel"]
+margin_left = 27.0
+margin_top = 28.0
+margin_right = 354.0
+margin_bottom = 60.0
+text = "Tai khoan khong ton tai"
 [connection signal="pressed" from="Panel/RightPanel/Header/Tool/Modify_button" to="." method="_on_Modify_button_pressed"]
+[connection signal="pressed" from="Panel/LeftPanel/Head/Login_button" to="." method="_on_Login_icon_pressed"]
 [connection signal="pressed" from="Panel/LeftPanel/Body/Button" to="." method="_on_Button_pressed"]
 [connection signal="item_selected" from="Panel/LeftPanel/Body/ListCollection" to="Panel/LeftPanel/Body/ListCollection" method="_on_ListCollection_item_selected"]
 [connection signal="pressed" from="Popup/Panel/Button" to="." method="_on_Button_2_pressed"]

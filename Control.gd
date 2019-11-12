@@ -78,7 +78,7 @@ func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 		reset_done()
 		init_collections()
 	else: 
-		$"Wrong_account_popup()".popup()
+		$Wrong_account_popup.popup()
 
 func add_action(idx, action):
 	data[idx]["data"].append(action)
@@ -179,9 +179,6 @@ func _on_Login_Button_pressed():
 	$Login_popup.hide()
 
 
-func _on_Switch_Button_pressed():
-	$Login_popup.show()
-
 
 func _on_GetDoneList_request_completed(result, response_code, headers, body):
 	print("got")
@@ -190,3 +187,7 @@ func _on_GetDoneList_request_completed(result, response_code, headers, body):
 		done = json.result["data"]
 	reset_done()
 	pass # Replace with function body.
+
+
+func _on_Login_icon_pressed():
+	$Login_popup.popup()
