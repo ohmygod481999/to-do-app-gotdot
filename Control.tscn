@@ -99,7 +99,6 @@ margin_top = 50.0
 margin_right = 308.0
 margin_bottom = 100.0
 custom_fonts/font = SubResource( 4 )
-text = "Tuesday, January 2019"
 
 [node name="DateTime" type="Label" parent="Panel/RightPanel/Header"]
 margin_left = 19.2702
