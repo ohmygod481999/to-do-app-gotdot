@@ -105,7 +105,7 @@ func init_collections():
 	#print(data)
 	for data_item in data:
 
-		collections.add_item(data_item["name"])
+		#collections.add_item(data_item["name"])
 		#print(data_item["name"])
 
 		var item = icon.duplicate()
