@@ -3,7 +3,7 @@
 [ext_resource path="res://List_modifier.gd" type="Script" id=1]
 
 [node name="List_modifier" type="Panel"]
-margin_left = 3.05176e-05
+margin_left = 3.05176e-005
 margin_top = 0.175751
 margin_right = 632.0
 margin_bottom = 196.176
@@ -52,7 +52,7 @@ margin_left = 5.0
 margin_top = 64.0
 margin_right = 326.0
 margin_bottom = 102.0
-text = "HANH DONG CAN XOA KHOI DANH SACH:"
+text = "HANH DONG CAN THEM VAO DANH SACH:"
 valign = 1
 [connection signal="item_selected" from="OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Button_ok" to="." method="_on_OK_pressed"]
