@@ -99,6 +99,7 @@ margin_top = 50.0
 margin_right = 308.0
 margin_bottom = 100.0
 custom_fonts/font = SubResource( 4 )
+text = "Tuesday, January 2019"
 
 [node name="DateTime" type="Label" parent="Panel/RightPanel/Header"]
 margin_left = 19.2702
@@ -232,7 +233,6 @@ margin_right = 702.947
 margin_bottom = 324.579
 
 [node name="List_modifier_popup" type="Popup" parent="."]
-editor/display_folded = true
 margin_left = 262.0
 margin_top = 181.0
 margin_right = 893.0
